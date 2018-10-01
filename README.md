@@ -18,6 +18,7 @@
 ## 要件関連
 - データ送信:ユーザー登録、ログインにAjax使用。本文登録、編集機能まわりではAjax未使用>間に合わず。
 - セッション保持方法: ファイルで保持
+### DB ER図
+![NOVELDB-ER](https://github.com/HodlerSciFi/GARAGE/raw/master/NOVELDBV1.png)
 
-- 
 
