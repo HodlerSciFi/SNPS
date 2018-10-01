@@ -14,7 +14,7 @@ $_SESSION = array();
 @session_destroy();
 
 //リダイレクト
-header("Location:./top.php");
+header("Location:./index.php");
 ?>
 
 
