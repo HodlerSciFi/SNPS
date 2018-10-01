@@ -1,0 +1,110 @@
+body {
+	font-family: "游明朝体","YuMincho","ヒラギノ明朝 Pro W3","Hiragino Mincho Pro","ＭＳ 明朝","MS Mincho",serif;
+	}
+.navi {
+	height: auto;
+	overflow: hidden;
+	border: solid #cccccc;
+	border-width: 1px 0;
+}
+.navi ul {
+	margin: 0;
+	padding: 0;
+}
+.navi ul:after {
+	content: "";
+	clear: both;
+	display: blocks;
+}
+.navi ul li {
+	list-style: none;
+	padding-right: 30px;
+	float: left;
+}
+
+.content {
+	clear: left;
+}
+#updated {
+	clear: left;
+}
+h1 {
+	text-align: center;
+}
+#updatewrk {
+	text-align: center;
+	margin-bottom: 5px;
+}
+#updateul {
+	float: left;
+	position: relative;
+	left: 50%;
+	margin-top: 0px;
+}
+#updateli {
+	position: relative;
+	left: -50%;
+}
+#search {
+	clear: left;
+}
+#search p {
+	text-align: center;
+}
+#worklist p {
+	text-align: center;
+}
+#news p {
+	text-align: center;
+}
+
+#wrktitle {
+	text-align: center;
+}
+#auther {
+	text-align: center;
+}
+#sections {
+	clear: left;
+}
+#secul {
+	float: left;
+	position: relative;
+	left: 40%;
+	margin-top: 0px;
+}
+#secli {
+	position: relative;
+	left: -50%;
+}
+#top {
+	clear: left;
+}
+#top p {
+	text-align: center;
+}
+#sentensebox {
+}
+#sentense {
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	-webkit-font-smoothing: antialiased;
+}
+#move {
+	margin-top: 20px;
+	text-align: center;
+}
+#move a {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.sentense-form {
+	font-family: inherit;
+	font-size: 100%;
+	width: 500px;
+	margin-left: 60px;
+	margin-right: auto;
+	height: 30em;
+}

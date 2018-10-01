@@ -1,0 +1,86 @@
+<?php
+require 'common/php/password.php';
+//session start
+session_start();
+
+$db['host']="localhost";
+$db['user']="nuser";
+$db['pass']="nuser";
+$db['dbname']="NOVELDBV1";
+
+$errorMessage="";
+$signUpMessage="";
+
+//push signin button
+if(isset($_POST["signIn"])) {
+	//user id check
+	if(empty($_POST["username"])) {
+		$errorMessage = 'ユーザー名が未入力です';
+	} else if (empty($_POST["password"])) {
+		$errorMessage = 'パスワードが未入力です';
+	} 
+
+	if(!empty($_POST["username"]) && !empty($_POST["password"])) {
+		//set username and password
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+		//database certification
+		$dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+		
+		try {
+			$pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+			$stmt = $pdo->prepare('SELECT * FROM users WHERE uname = ?');
+			$stmt->execute(array($username));
+
+			if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+				if(password_verify($password, $row['password'])) {
+					session_regenerate_id(true);
+
+					$uname = $row['uname'];
+					$sql = "SELECT * FROM users WHERE uname = '$uname'";
+					$stmt = $pdo->query($sql);
+					foreach ($stmt as $row) {
+						$row['uid'];
+					}
+					$_SESSION['UID'] = $row['uid'];
+					$_SESSION['UNAME'] = $row['uname'];
+					header("Location: wrkManager.php");
+					exit();
+				} else {
+					$errorMessage='ユーザー名あるいはパスワードに誤りがあります';
+				}
+			} else {
+				$errorMessage='ユーザー名あるいはパスワードに誤りがあります';
+			}
+		} catch (PDOException $e) {
+			$errorMessage = 'データベースエラー';
+			echo $e->getMessage();
+		}
+	}
+}
+?>
+
+<!DOCTYPE html>
+<html lang='ja'>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="SF小説投稿サイトログイン">
+		<title>ログイン</title>
+		<link rel="stylesheet" href="common/css/sfstyle.css">
+		<script type="text/javascript" src=""></script>
+	</head>
+	<body>
+		<?php include('header.php'); ?>
+		<div id="content">
+			<h1>ログイン</h1>
+				<div><font color="#ff0000"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></font></div>
+			<form id="loginForm" name="loginForm" action="" method="POST">
+				<label for="username">ユーザー名</label><input id="username" name="username" type="text" value=""><br/>
+				<label for="password">パスワード</label><input id="password" name="password" type="password"><br/>
+				<input id="signIn" name="signIn" type="submit" value="ログイン"></input>
+			</form>
+		</div>
+		<div id="footer">
+		</div>	
+	</body>
+</html>
